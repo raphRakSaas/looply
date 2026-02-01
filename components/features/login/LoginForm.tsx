@@ -55,11 +55,11 @@ export function LoginForm() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <Card>
+        <Card className="border-zinc-800 bg-zinc-900">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Connexion</CardTitle>
-            <CardDescription>
-              Entrez votre email pour vous connecter à votre compte
+            <CardTitle className="text-2xl text-white">Connexion</CardTitle>
+            <CardDescription className="text-zinc-400">
+          
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -70,7 +70,7 @@ export function LoginForm() {
                 </div>
               )}
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-zinc-200">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -83,11 +83,12 @@ export function LoginForm() {
                   }}
                   disabled={loading}
                   required
+                  className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Mot de passe</Label>
+                  <Label htmlFor="password" className="text-zinc-200">Mot de passe</Label>
                   <Link
                     href="/forgot-password"
                     className="text-sm text-primary hover:underline"
@@ -107,6 +108,7 @@ export function LoginForm() {
                   }}
                   disabled={loading}
                   required
+                  className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
@@ -119,19 +121,19 @@ export function LoginForm() {
             </form>
             <div className="relative my-4">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
+                <span className="w-full border-t border-zinc-700" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">
+                <span className="bg-zinc-900 px-2 text-zinc-400">
                   Ou continuer avec
                 </span>
               </div>
             </div>
-            <Button type="button" variant="outline" className="w-full">
+            <Button type="button" variant="outline" className="w-full border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700">
               <GoogleIcon />
               Google
             </Button>
-            <div className="mt-4 text-center text-sm">
+            <div className="mt-4 text-center text-sm text-zinc-400">
               Pas de compte ?{" "}
               <Link href="/signup" className="text-primary hover:underline">
                 Créer un compte
