@@ -4,17 +4,13 @@ import { LoginBranding } from "./LoginBranding";
 import { LoginForm } from "./LoginForm";
 
 /**
- * Compose la page login : zone branding (gauche) + formulaire (droite).
- * Utilisé par app/(auth)/login/page.tsx
+ * Page login : gauche = logo sur fond blanc, droite = formulaire centré.
  */
 export function LoginPage() {
   return (
-    <div
-      className="flex min-h-screen flex-col md:flex-row font-[family:var(--font-inter)]"
-      style={{ backgroundColor: "var(--looply-bg)" }}
-    >
+    <div className="grid min-h-svh font-[family:var(--font-inter)] lg:grid-cols-2">
       <LoginBranding />
-      <div className="flex flex-1 flex-col items-center justify-center px-5 py-8 md:px-10 md:py-12 lg:px-16">
+      <div className="flex flex-col bg-muted/30">
         <LoginForm />
       </div>
     </div>
