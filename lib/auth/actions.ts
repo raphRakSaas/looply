@@ -2,6 +2,8 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { createOrganization } from "@/lib/services/organizations";
+import { getUser } from "@/lib/auth/utils";
 
 export type SignInResult = { error?: string };
 
@@ -30,7 +32,7 @@ export async function signUp(
     return { error: error.message };
   }
 
-  redirect("/dashboard");
+  redirect("/onboarding");
 }
 
 export async function signOut(): Promise<void> {
@@ -50,4 +52,33 @@ export async function resetPassword(email: string): Promise<SignInResult> {
   }
 
   return {};
+}
+
+export type CompleteOnboardingResult = { error?: string };
+
+export async function completeOnboarding(
+  activityName: string
+): Promise<CompleteOnboardingResult> {
+  try {
+    const user = await getUser();
+
+    if (!user) {
+      return { error: "Utilisateur non connecté." };
+    }
+
+    if (!activityName || !activityName.trim()) {
+      return { error: "Le nom de l'activité est requis." };
+    }
+
+    await createOrganization(user.id, {
+      name: activityName.trim(),
+    });
+
+    redirect("/dashboard");
+  } catch (error) {
+    if (error instanceof Error) {
+      return { error: error.message };
+    }
+    return { error: "Une erreur est survenue." };
+  }
 }
