@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "@/lib/auth/actions";
 import { Button } from "@/components/ui/Button";
+import { LooplyPrimaryButton } from "@/components/ui/LooplyPrimaryButton";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/label";
 import {
@@ -111,13 +112,13 @@ export function LoginForm() {
                   className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <LooplyPrimaryButton type="submit" disabled={loading}>
                 {loading ? (
-                  <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                  <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                 ) : (
                   "Se connecter"
                 )}
-              </Button>
+              </LooplyPrimaryButton>
             </form>
             <div className="relative my-4">
               <div className="absolute inset-0 flex items-center">
