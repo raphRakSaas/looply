@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* shadcn/ui (compatible theme) */
+  /* shadcn/ui theme */
   --card: #ffffff;
   --card-foreground: #0a0a0a;
   --popover: #ffffff;
@@ -22,41 +22,6 @@
   --input: 0 0% 90%;
   --ring: 250 84% 54%;
   --radius: 0.5rem;
-  /* Palette Looply (login / pages pro) */
-  --looply-bg: #F7F7FA;
-  --looply-text: #111827;
-  --looply-text-muted: #6B7280;
-  --looply-accent: #4F46E5;
-  --looply-accent-hover: #4338CA;
-  --looply-success: #10B981;
-  --looply-border: #E5E7EB;
-  --looply-card: #ffffff;
-}
-
-@keyframes looply-card-enter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes looply-branding-breathe {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 0.85; }
-}
-
-@keyframes looply-error-shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  75% { transform: translateX(2px); }
-}
-
-@keyframes looply-spinner {
-  to { transform: rotate(360deg); }
 }
 
 @theme inline {
