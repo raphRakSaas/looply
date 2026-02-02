@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { signUp } from "@/lib/auth/actions";
+import { signUp, signInWithGoogle } from "@/lib/auth/actions";
 import {
   getPasswordCriteria,
   getPasswordStrength,
@@ -29,6 +29,7 @@ export function SignupForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const passwordCriteria = useMemo(() => getPasswordCriteria(password), [password]);
@@ -87,6 +88,26 @@ export function SignupForm() {
     } catch {
       setError("Une erreur est survenue. Réessayez.");
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    setError(null);
+    setGoogleLoading(true);
+
+    try {
+      const result = await signInWithGoogle();
+
+      if (result?.error) {
+        setError(result.error);
+        setGoogleLoading(false);
+        return;
+      }
+
+      // Redirect handled by signInWithGoogle action
+    } catch {
+      setError("Impossible de créer un compte avec Google. Réessayez.");
+      setGoogleLoading(false);
     }
   };
 
@@ -281,9 +302,17 @@ export function SignupForm() {
               type="button"
               variant="outline"
               className="w-full"
+              onClick={handleGoogleSignUp}
+              disabled={loading || googleLoading}
             >
-              <GoogleIcon />
-              Google
+              {googleLoading ? (
+                <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              ) : (
+                <>
+                  <GoogleIcon />
+                  Google
+                </>
+              )}
             </Button>
             <div className="mt-4 text-center text-sm text-muted-foreground">
               Déjà un compte ?{" "}

@@ -126,6 +126,33 @@ export async function resendConfirmationEmail(
   return {};
 }
 
+export async function signInWithGoogle(): Promise<SignInResult> {
+  const supabase = await createClient();
+  
+  const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL ?? ""}/auth/callback`;
+  
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: redirectUrl,
+      queryParams: {
+        access_type: "offline",
+        prompt: "consent",
+      },
+    },
+  });
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  if (data.url) {
+    redirect(data.url);
+  }
+
+  return { error: "Impossible de démarrer la connexion avec Google." };
+}
+
 export async function signOut(): Promise<void> {
   const supabase = await createClient();
   await supabase.auth.signOut();

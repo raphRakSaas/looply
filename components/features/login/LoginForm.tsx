@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { signIn } from "@/lib/auth/actions";
+import { useSearchParams } from "next/navigation";
+import { signIn, signInWithGoogle } from "@/lib/auth/actions";
 import { Button } from "@/components/ui/Button";
 import { LooplyPrimaryButton } from "@/components/ui/LooplyPrimaryButton";
 import { Input } from "@/components/ui/Input";
@@ -17,10 +18,20 @@ import {
 import { GoogleIcon } from "./GoogleIcon";
 
 export function LoginForm() {
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Récupérer les erreurs de l'URL (ex: callback OAuth)
+  useEffect(() => {
+    const errorFromUrl = searchParams.get("error");
+    if (errorFromUrl) {
+      setError(decodeURIComponent(errorFromUrl));
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +61,26 @@ export function LoginForm() {
     } catch {
       setError("Une erreur est survenue. Réessayez.");
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError(null);
+    setGoogleLoading(true);
+
+    try {
+      const result = await signInWithGoogle();
+
+      if (result?.error) {
+        setError(result.error);
+        setGoogleLoading(false);
+        return;
+      }
+
+      // Redirect handled by signInWithGoogle action
+    } catch {
+      setError("Impossible de se connecter avec Google. Réessayez.");
+      setGoogleLoading(false);
     }
   };
 
@@ -130,9 +161,21 @@ export function LoginForm() {
                 </span>
               </div>
             </div>
-            <Button type="button" variant="outline" className="w-full border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700">
-              <GoogleIcon />
-              Google
+            <Button 
+              type="button" 
+              variant="outline" 
+              className="w-full border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700"
+              onClick={handleGoogleSignIn}
+              disabled={loading || googleLoading}
+            >
+              {googleLoading ? (
+                <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              ) : (
+                <>
+                  <GoogleIcon />
+                  Google
+                </>
+              )}
             </Button>
             <div className="mt-4 text-center text-sm text-zinc-400">
               Pas de compte ?{" "}
