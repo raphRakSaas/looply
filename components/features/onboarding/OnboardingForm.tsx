@@ -46,14 +46,14 @@ export function OnboardingForm() {
   };
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
       <div className="w-full max-w-md">
-        <Card className="border-zinc-800 bg-zinc-900">
+        <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-white">
+            <CardTitle className="text-2xl">
               Quel est le nom de votre activité ?
             </CardTitle>
-            <CardDescription className="text-zinc-400">
+            <CardDescription>
               Nous l&apos;utiliserons pour personnaliser vos messages
             </CardDescription>
           </CardHeader>
@@ -65,7 +65,7 @@ export function OnboardingForm() {
                 </div>
               )}
               <div className="grid gap-2">
-                <Label htmlFor="activity-name" className="text-zinc-200">
+                <Label htmlFor="activity-name">
                   Nom de l&apos;activité
                 </Label>
                 <Input
@@ -81,9 +81,8 @@ export function OnboardingForm() {
                   disabled={loading}
                   required
                   autoFocus
-                  className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-muted-foreground">
                   Exemples : Studio Mia, Garage ABC, Coach Sam
                 </p>
               </div>

@@ -1,7 +1,9 @@
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+
 export function Header() {
   return (
     <header
-      className="flex h-14 items-center border-b px-4"
+      className="flex h-14 items-center justify-between border-b px-4"
       style={{
         borderColor: "var(--looply-border)",
         backgroundColor: "var(--looply-card)",
@@ -13,6 +15,7 @@ export function Header() {
       >
         Looply
       </span>
+      <ThemeToggle />
     </header>
   );
 }

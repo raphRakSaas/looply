@@ -8,17 +8,13 @@ export const metadata: Metadata = {
 
 export default function ForgotPasswordRoute() {
   return (
-    <div
-      className="flex min-h-screen flex-col items-center justify-center font-[family:var(--font-inter)]"
-      style={{ backgroundColor: "var(--looply-bg)" }}
-    >
-      <p style={{ color: "var(--looply-text-muted)" }}>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background font-[family:var(--font-inter)]">
+      <p className="text-muted-foreground">
         Page mot de passe oublié à venir.
       </p>
       <Link
         href="/login"
-        className="mt-4 text-sm font-medium"
-        style={{ color: "var(--looply-accent)" }}
+        className="mt-4 text-sm font-medium text-primary hover:underline"
       >
         Retour à la connexion
       </Link>

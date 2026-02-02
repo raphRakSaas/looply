@@ -29,7 +29,7 @@ function LooplyPrimaryButton({
         "shadow-[0_4px_14px_0_rgba(124,58,237,0.4)]",
         "hover:shadow-[0_6px_20px_0_rgba(6,182,212,0.35)] hover:-translate-y-0.5",
         "active:translate-y-0 active:shadow-[0_2px_10px_0_rgba(124,58,237,0.35)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "disabled:pointer-events-none disabled:opacity-50 disabled:translate-y-0",
         className
       )}

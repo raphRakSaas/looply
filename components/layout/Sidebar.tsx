@@ -23,7 +23,7 @@ export function Sidebar() {
           <Link
             key={href}
             href={href}
-            className="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-white/80"
+            className="rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
             style={{ color: "var(--looply-text)" }}
           >
             {label}

@@ -91,14 +91,14 @@ export function SignupForm() {
   };
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <Card className="border-zinc-800 bg-zinc-900">
+        <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-white">
+            <CardTitle className="text-2xl">
               Créer mon compte
             </CardTitle>
-            <CardDescription className="text-zinc-400">
+            <CardDescription>
               Pas de carte bancaire • Configuration en 1 minute
             </CardDescription>
           </CardHeader>
@@ -110,7 +110,7 @@ export function SignupForm() {
                 </div>
               )}
               <div className="grid gap-2">
-                <Label htmlFor="email" className="text-zinc-200">
+                <Label htmlFor="email">
                   Email
                 </Label>
                 <Input
@@ -125,11 +125,10 @@ export function SignupForm() {
                   }}
                   disabled={loading}
                   required
-                  className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password" className="text-zinc-200">
+                <Label htmlFor="password">
                   Mot de passe
                 </Label>
                 <Input
@@ -144,7 +143,6 @@ export function SignupForm() {
                   }}
                   disabled={loading}
                   required
-                  className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
                 {/* Barre de robustesse horizontale (3 segments) */}
                 {password.length > 0 && (
@@ -178,14 +176,14 @@ export function SignupForm() {
                             ? strengthConfig.moyen.barClass
                             : passwordStrength === "robuste"
                               ? strengthConfig.robuste.barClass
-                              : "bg-zinc-700"
+                              : "bg-muted"
                         }`}
                       />
                       <div
                         className={`h-full flex-1 rounded-r-full transition-colors duration-300 ${
                           passwordStrength === "robuste"
                             ? strengthConfig.robuste.barClass
-                            : "bg-zinc-700"
+                            : "bg-muted"
                         }`}
                       />
                     </div>
@@ -196,15 +194,15 @@ export function SignupForm() {
                     </div>
                   </div>
                 )}
-                {/* Critères en temps réel (affichés dès qu'on tape) */}
+                    {/* Critères en temps réel (affichés dès qu'on tape) */}
                 {password.length > 0 && (
                   <>
-                    <ul className="mt-1 space-y-1 text-xs text-zinc-500">
+                    <ul className="mt-1 space-y-1 text-xs text-muted-foreground">
                       <li className="flex items-center gap-2">
                         {passwordCriteria.length ? (
                           <Check className="size-3.5 shrink-0 text-emerald-500" aria-hidden />
                         ) : (
-                          <X className="size-3.5 shrink-0 text-zinc-500" aria-hidden />
+                          <X className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
                         )}
                         <span>8 caractères min.</span>
                       </li>
@@ -212,7 +210,7 @@ export function SignupForm() {
                         {passwordCriteria.uppercase ? (
                           <Check className="size-3.5 shrink-0 text-emerald-500" aria-hidden />
                         ) : (
-                          <X className="size-3.5 shrink-0 text-zinc-500" aria-hidden />
+                          <X className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
                         )}
                         <span>1 majuscule</span>
                       </li>
@@ -220,7 +218,7 @@ export function SignupForm() {
                         {passwordCriteria.lowercase ? (
                           <Check className="size-3.5 shrink-0 text-emerald-500" aria-hidden />
                         ) : (
-                          <X className="size-3.5 shrink-0 text-zinc-500" aria-hidden />
+                          <X className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
                         )}
                         <span>1 minuscule</span>
                       </li>
@@ -228,7 +226,7 @@ export function SignupForm() {
                         {passwordCriteria.digit ? (
                           <Check className="size-3.5 shrink-0 text-emerald-500" aria-hidden />
                         ) : (
-                          <X className="size-3.5 shrink-0 text-zinc-500" aria-hidden />
+                          <X className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
                         )}
                         <span>1 chiffre</span>
                       </li>
@@ -244,7 +242,7 @@ export function SignupForm() {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="confirm-password" className="text-zinc-200">
+                <Label htmlFor="confirm-password">
                   Confirmer le mot de passe
                 </Label>
                 <Input
@@ -259,7 +257,6 @@ export function SignupForm() {
                   }}
                   disabled={loading}
                   required
-                  className="border-zinc-700 bg-zinc-800 text-white placeholder:text-zinc-500"
                 />
               </div>
               <LooplyPrimaryButton type="submit" disabled={loading}>
@@ -272,10 +269,10 @@ export function SignupForm() {
             </form>
             <div className="relative my-4">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-zinc-700" />
+                <span className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-zinc-900 px-2 text-zinc-400">
+                <span className="bg-card px-2 text-muted-foreground">
                   Ou continuer avec
                 </span>
               </div>
@@ -283,12 +280,12 @@ export function SignupForm() {
             <Button
               type="button"
               variant="outline"
-              className="w-full border-zinc-700 bg-zinc-800 text-white hover:bg-zinc-700"
+              className="w-full"
             >
               <GoogleIcon />
               Google
             </Button>
-            <div className="mt-4 text-center text-sm text-zinc-400">
+            <div className="mt-4 text-center text-sm text-muted-foreground">
               Déjà un compte ?{" "}
               <Link href="/login" className="text-primary hover:underline">
                 Se connecter
