@@ -70,6 +70,15 @@ export function SignupForm() {
 
       if (result?.error) {
         setError(result.error);
+        console.error("[Signup] Erreur:", result.error);
+        if (result.debug) {
+          try {
+            const parsed = JSON.parse(result.debug);
+            console.error("[Signup] Détails erreur (console navigateur):", parsed);
+          } catch {
+            console.error("[Signup] Détails erreur (console navigateur):", result.debug);
+          }
+        }
         setLoading(false);
         return;
       }
